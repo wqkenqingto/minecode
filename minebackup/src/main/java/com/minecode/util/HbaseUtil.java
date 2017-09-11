@@ -29,19 +29,17 @@ public class HbaseUtil {
 
     static {
         //sql初始化
-        DBUtil.initDataSource("travelinfo_show");
-        con = DBUtil.getConnection();
-
+//
         //--------
         conf = HBaseConfiguration.create();
-        conf.set("hbase.zookeeper.quorum", "hadoop220,hadoop221,hadoop234,hadoop235,hadoop236,hadoop237,hadoop238,hadoop239,hadoop240,hadoop241,hadoop242");
+        conf.set("hbase.zookeeper.quorum", "colony1,colony2,colony3,colony4");
         conf.set("hbase.zookeeper.property.clientPort", "2181");
-        conf.set("fs.default.name", "hdfs://mocentreware/hbase");
-        conf.set("dfs.nameservices", "mocentreware");
-        conf.set("dfs.ha.namenodes.mocentreware", "nn1,nn2");
-        conf.set("dfs.namenode.rpc-address.mocentreware.nn1", "hadoop220:8020");
-        conf.set("dfs.namenode.rpc-address.mocentreware.nn2", "hadoop221:8020");
-        conf.set("dfs.client.failover.proxy.provider.mocentreware", "org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider");
+        conf.set("fs.default.name", "hdfs://colonyware:8020/hbase");
+        conf.set("dfs.nameservices", "colonyware");
+//        conf.set("dfs.ha.namenodes.colonyware", "colony1,colony2");
+//        conf.set("dfs.namenode.rpc-address.colonyware.nn1", "colony1:8020");
+//        conf.set("dfs.namenode.rpc-address.colonyware.nn2", "colony2:8020");
+        conf.set("dfs.client.failover.proxy.provider.colonyware", "org.apache.hadoop.hdfs.server.namenode.ha.ConfiguredFailoverProxyProvider");
         conf.set("hadoop.home.dir", "/usr/local/hadoop/hadoop");
     }
 
@@ -254,7 +252,9 @@ public class HbaseUtil {
 
     public static void main(String[] args) throws Exception {
 //        getRowsByNumber("travel_news_show");
-
-
+        args = new String[]{"info"};
+        createTable("city_id_list", args);
+        boolean b = isExist("city_id_list");
+        System.out.println(b);
     }
 }
