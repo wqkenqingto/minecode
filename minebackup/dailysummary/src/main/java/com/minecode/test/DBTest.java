@@ -14,7 +14,9 @@ import java.util.Date;
  */
 public class DBTest {
     public static void main(String[] args) throws Exception {
+
         DBUtil.initDataSource("solo");
+
         Connection con = DBUtil.getConnection();
         String sql = "select articleTitle,articleContent from ";
         String tname = "b3_solo_article";

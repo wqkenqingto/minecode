@@ -73,7 +73,7 @@ public class HfilePath {
     }
 
     static Configuration conf = new Configuration();
-    static String hfilePah1 = "hdfs://hadoop221:8020/temp";
+    static String hfilePah1 = "hdfs://test-hadoop-4:8020/test/";
     static String hfilePah2 = "hdfs://hadoop221:8020/temp/auto";
     static String suffix = "2017-03-21";
 

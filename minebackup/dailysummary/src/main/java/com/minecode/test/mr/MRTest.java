@@ -1,4 +1,4 @@
-package com.minecode.mr;
+package com.minecode.test.mr;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.hadoop.conf.Configuration;
@@ -25,22 +25,22 @@ import java.net.URI;
  * Created by wqkenqin on 2016/9/29.
  * Description:该类用于作为mr模板。
  */
-public class Countip implements Tool {
+public class MRTest implements Tool {
     static String FILE_ROOT = "";
     static String FILE_INPUT = "";
     static String FILE_OUTPUT = "";
 
     public static void main(String[] args) throws Exception {
 
-        ToolRunner.run(new Countip(), args);
+        ToolRunner.run(new MRTest(), args);
     }
 
     @Override
     public int run(String[] args) throws Exception {
 
-        FILE_ROOT = "/Users/wqkenqing/Desktop/";
-        FILE_INPUT = "/Users/wqkenqing/Desktop/temp2/test/allmakr2";
-        FILE_OUTPUT = "/Users/wqkenqing/desktop/temp2/test/out/";
+        FILE_ROOT = args[0];
+        FILE_INPUT = args[1];
+        FILE_OUTPUT = args[2];
 
 
         Configuration conf = new Configuration();
@@ -54,14 +54,14 @@ public class Countip implements Tool {
         // 0 定义干活的人
         Job job = new Job(conf);
         // 打包运行必须执行的方法
-        job.setJarByClass(Countip.class);
+        job.setJarByClass(MRTest.class);
         // 1.1 告诉干活的人 输入流位置 读取hdfs中的文件。每一行解析成一个<k,v>。每一个键值对调用一次map函数
         FileInputFormat.setInputPaths(job, FILE_INPUT);
         // 指定如何对输入文件进行格式化，把输入文件每一行解析成键值对
         job.setInputFormatClass(TextInputFormat.class);
 
         // 1.2 指定自定义的map类
-        job.setMapperClass(CountipMapper.class);
+        job.setMapperClass(TemplateMapper.class);
         job.setMapOutputKeyClass(Text.class);
         job.setMapOutputValueClass(Text.class);
 
@@ -72,7 +72,7 @@ public class Countip implements Tool {
         // 1.5 TODO 规约
 
         // 2.2 指定自定义reduce类
-        job.setReducerClass(CountipReducer.class);
+        job.setReducerClass(TemplateReducer.class);
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(Text.class);
 
@@ -96,7 +96,7 @@ public class Countip implements Tool {
     }
 }
 
-class CountipMapper extends Mapper<LongWritable, Text, Text, Text> {
+class TemplateMapper extends Mapper<LongWritable, Text, Text, Text> {
 
 
     {
@@ -105,15 +105,11 @@ class CountipMapper extends Mapper<LongWritable, Text, Text, Text> {
 
     @Override
     protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-        String val = value.toString();
-        String[] vs = val.split("\t");
-        String address = vs[1];
-        String ip = vs[0];
-        context.write(new Text(ip), new Text(address));
+
     }
 }
 
-class CountipReducer extends Reducer<Text, Text, Text, Text> {
+class TemplateReducer extends Reducer<Text, Text, Text, Text> {
 
     @Override
     public void setup(Context context) {
@@ -121,14 +117,6 @@ class CountipReducer extends Reducer<Text, Text, Text, Text> {
 
     @Override
     protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
-        int count = 1;
-        StringBuffer sb = new StringBuffer();
-        for (Text val : values) {
-            sb.append(val.toString());
-            sb.append("\t");
-        }
-        context.write(key, new Text(sb.toString()));
-
 
     }
 
@@ -136,7 +124,7 @@ class CountipReducer extends Reducer<Text, Text, Text, Text> {
         ObjectMapper OBJECT_MAPPER = new ObjectMapper();
         if (StringUtils.isBlank(jsonString)) {
             return null;
-        }  try {
+        } try {
             return OBJECT_MAPPER.readValue(jsonString, tr);
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage(), e);

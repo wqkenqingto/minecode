@@ -2,7 +2,9 @@ package com.minecode.mail;
 
 import com.minecode.day.WeatherNoticeApi;
 import com.minecode.util.EmailProduct;
+import org.apache.lucene.search.suggest.tst.TSTAutocomplete;
 
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,20 +12,12 @@ import java.util.Map;
  * Created by wqkenqing on 2017/9/20.
  */
 public class Test {
-    public static void main(String[] args) {
-        String reciever = "wqkenqingto@163.com";
-        String desc = "天气状况";
-        WeatherNoticeApi.checkWeather("");
-//        EmailProduct emailProduct = new EmailProduct(reciever,desc,);
-        StringBuffer sb = new StringBuffer();
-        StringBuffer sb1 = new StringBuffer();
-        Map<String, String> map = new HashMap<>();
+    public static void main(String[] args) throws URISyntaxException {
+        Test test = new Test();
+        String path = test.getClass().getProtectionDomain().getCodeSource().getLocation().getPath().toString();
+        int lastIndexOf = path.lastIndexOf("/");
+        path.substring(0, lastIndexOf);
+        System.out.println(path);
 
-        for (int i = 0; i < 9; i++) {
-            sb.append("name" + i);
-            map.put(sb.toString(), "jj");
-            sb.setLength(0);
-        }
-        System.out.println(map);
     }
 }

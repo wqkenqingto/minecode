@@ -1,6 +1,7 @@
 package com.minecode.study.thread;
 
 import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.Locale;
 
 /**
@@ -17,21 +18,14 @@ public class ThreadTest extends Thread {
     }
 
     public static void main(String[] args) {
-        ThreadTest tt = new ThreadTest();
-        ThreadTest tt1 = new ThreadTest();
-        ThreadTest tt2 = new ThreadTest();
-        ThreadTest tt3 = new ThreadTest();
-        ThreadTest tt4 = new ThreadTest();
-        System.out.println("进入主线程");
-        tt.start();
-        tt1.start();
-        tt2.start();
-        tt3.start();
-        tt4.start();
-        LocalTime time = LocalTime.now();
+        String s = "订单号;下单时间;支付时间;订单状态;付款方式;支付状态;酒店名称;入住开始时间;入住结束时间;房型;预定天数;房间数;间夜量;订单原价;获赠积分;积分抵用金额; 优惠券抵 ; 优惠券批次号 ; 支付金额 ; 手续费（收款渠道） ; 实收款 ; 收款方式 ;支付流水号;供应商名称;外部订单号;成本价;佣金";
+        String[] ss = s.split(";");
+        StringBuffer sb = new StringBuffer();
+        for (String w : ss) {
+            sb.append(w.trim());
 
-
-        System.out.println("main线程结束" + time);
-
+            sb.append(";");
+        }
+        System.out.println(sb);
     }
 }

@@ -1,8 +1,8 @@
 package com.minecode.test;
 
 
-import com.minecode.utils.CommonUtil;
-import com.minecode.utils.HbaseUtil;
+import com.minecode.util.CommonUtil;
+import com.minecode.util.HbaseUtil;
 import org.apache.hadoop.hbase.KeyValue;
 import org.apache.hadoop.hbase.client.Result;
 import scala.sys.SystemProperties;
@@ -44,13 +44,13 @@ public class Test {
         //wexperience title
 //        String[] exps = {"experience"};
 //        HbaseUtil.createTable("workintroduce",exps);
-        String title = "";
-        String time = "";
-        String duty = "";
-        String desc = "";
-        InputStream in = new FileInputStream("/Users/wqkenqing/Desktop/工作经验");
-        String work = CommonUtil.stream2String(in, "utf8");
-        String[] works = work.split("---");
+//        String title = "";
+//        String time = "";
+//        String duty = "";
+//        String desc = "";
+//        InputStream in = new FileInputStream("/Users/wqkenqing/Desktop/工作经验");
+//        String work = CommonUtil.stream2String(in, "utf8");
+//        String[] works = work.split("---");
 //        for (String exps : works) {
 //
 //            String[] es = exps.trim().split("\n");
@@ -65,7 +65,8 @@ public class Test {
 //            HbaseUtil.addRow("workintroduce", row, "experience", "duty", duty);
 //            HbaseUtil.addRow("workintroduce", row, "experience", "desc", desc);
 //        }
-        HbaseUtil.getAllRowsShow("workintroduce");
+//        HbaseUtil.getAllRowsShow("workintroduce");
+        HbaseUtil.getAllRowsShow("city_id_list");
     }
 
 }

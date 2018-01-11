@@ -6,14 +6,16 @@ import org.apache.hadoop.hbase.util.Bytes;
 import org.jsoup.Jsoup;
 
 /**
- * Created by wqkenqing on 2017/9/1.
- */
+ * @ className:WeatherApi
+ * @ author:wqkenqing
+ * @ date:
+ * @ describe:
+ **/
 public class WeatherApi {
 
 
     public static String getCityWeather(String cityname) throws Exception {
         String cityid = getCityIdFromHbase(cityname);
-//        String cityid = "101320101";
         if (StringUtils.isBlank(cityid)) {
             return "";
         }
@@ -22,7 +24,6 @@ public class WeatherApi {
         String sufixt = "?_";
         long time = System.currentTimeMillis();
         String api = apipre + cityid + sufix + sufixt + time;
-//        System.out.println(api);
         String s = Jsoup.connect(api).ignoreContentType(true).get().text();
         return s;
     }
@@ -48,7 +49,6 @@ public class WeatherApi {
         String weather = getCityWeather(cityname);
         System.out.println(weather);
 
-//        String id = getCityIdFromHbase(cityname);
-//        System.out.println(id);
+
     }
 }
