@@ -1,0 +1,4 @@
+#优惠券发行量 0点~15点
+
+#SELECT  cs.coupon_name,cs.face_value,subtitle,cs.id 批次号,COUNT(1) FROM coupon c ,coupon_scheme cs WHERE c.coupon_scheme_id=cs.id AND c.`status`IN(1,2)AND c.receive_time>=DATE_FORMAT(date_sub(current_date(),interval 1 day),'%Y-%m-%d 00:00:00') AND c.receive_time<=DATE_FORMAT(date_sub(current_date(),interval 1 day),'%Y-%m-%d 23:59:59') group by cs.group_id
+SELECT  cs.coupon_name,cs.face_value,subtitle,cs.id 批次号,COUNT(1) FROM coupon c ,coupon_scheme cs WHERE c.coupon_scheme_id=cs.id AND c.`status`IN(1,2)AND c.receive_time>=DATE_FORMAT(current_date(),'%Y-%m-%d 00:00:00') AND c.receive_time<=DATE_FORMAT(current_date(),'%Y-%m-%d 15:00:00') group by cs.group_id;

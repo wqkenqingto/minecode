@@ -1,0 +1,15 @@
+#所有订单
+
+select distinct main.order_no,main.product_name,main.total_price,main.paid_price ,main.order_time,info.pay_time,main.show_status_name,
+case main.order_type when 1 then '酒店' when 2 then '度假' when 3 then '门票' when 4 then '机票' when 5 then '嗨mI' when 6 then 'MTS' end as order_type  ,
+expand.coupon_id, expand.coupon_name,expand.coupon_code ,expand.coupon_face_value,expand.coupon_use_end_time,
+case  expand.coupon_type when 1 then '优惠券' when 2 then '现金券' end as coupon_type,case expand.coupon_status  when 1 then '正常' when 2 then '已退还' end  as coupon_type ,
+expand.contact_real_name,expand.contact_phone,g.group_name ,scheme.pick_up_start,scheme.subtitle,coupon.use_end_time
+from order_main as main  ,order_main_expand as expand,order_pay_info as  info,db_promotion.coupon_scheme as scheme,
+db_promotion.coupon_scheme_group as g,db_promotion.coupon as coupon where  main.order_no=expand.order_no and main.order_no=info.order_no and expand.coupon_id=coupon.id
+and ( (main.order_status in (194,195,404,405,412,413,414,420,302,300,305,306,307,308,309,313,310,311,312,314,315,333,334)
+and main.order_type in (1,2,6) )  or (info.pay_time is not null and main.order_type=4)  )   and
+expand.coupon_id is not null and expand.coupon_batch_id=scheme.id and scheme.group_id=g.id
+and  main.order_time>=DATE_FORMAT(date_sub(current_date(),interval 1 day),'%Y-%m-%d 00:00:00')
+and main.order_time<=DATE_FORMAT(date_sub(current_date(),interval 1 day),'%Y-%m-%d 23:59:59')
+order by main.order_type ,main.order_time asc;

@@ -1,0 +1,3 @@
+#优惠券使用量 全天
+SELECT  cs.coupon_name,cs.face_value,subtitle,cs.id,COUNT(1) FROM db_promotion.coupon c ,db_promotion.coupon_scheme cs WHERE c.coupon_scheme_id=cs.id AND c.`status`=2 AND c.use_time>=DATE_FORMAT(date_sub(current_date(),interval 1 day),'%Y-%m-%d 00:00:00')AND c.use_time<=DATE_FORMAT(date_sub(current_date(),interval 1 day),'%Y-%m-%d 23:59:59')group by cs.group_id ;
+
