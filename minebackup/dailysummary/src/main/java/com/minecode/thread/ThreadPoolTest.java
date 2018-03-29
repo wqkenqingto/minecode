@@ -1,8 +1,5 @@
 package com.minecode.thread;
 
-import com.minecode.study.thread.ThreadTest;
-
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -43,7 +40,6 @@ public class ThreadPoolTest {
             executor.execute(new Thread(t));
 //            new Thread(t).start();
         }
-
         executor.shutdown();
 
     }

@@ -137,7 +137,7 @@ public class ArticleGeneratorNew {
         jobj.put("12", "0");
         jobj.put("13", new Date());
         jobj.put("14", new Date());
-        jobj.put("15", 0.113);
+        jobj.put("15", Math.random());
         jobj.put("16", "1");
         jobj.put("17", "1");
         jobj.put("18", "pwd");

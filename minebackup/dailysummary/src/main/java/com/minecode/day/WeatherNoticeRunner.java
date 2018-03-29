@@ -26,7 +26,7 @@ public class WeatherNoticeRunner {
 
     public static void main(String[] args) throws IOException {
 //        String city = args[0];
-        String city = "鼓浪屿";
+        String city = "北京";
         run(city);
     }
 
