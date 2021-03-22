@@ -25,7 +25,7 @@
 		<jedis_version>2.5.1</jedis_version>
 		<ehcache_version>2.6.9</ehcache_version>
 		<spymemcached_version>2.11.2</spymemcached_version>
-		<xstream_version>1.4.7</xstream_version>
+		<xstream_version>1.4.16</xstream_version>
 		<poi_version>3.9</poi_version>
 		<jxl_version>2.6.12</jxl_version>
 		<xstream_version>1.4.7</xstream_version>
