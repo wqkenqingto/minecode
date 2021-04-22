@@ -14,7 +14,7 @@
 		<!-- 主要依赖库的版本定义 -->
 		<spring_version>4.1.0.RELEASE</spring_version>
 		<aspectj_version>1.8.0</aspectj_version>
-		<mybatis_version>3.2.7</mybatis_version>
+		<mybatis_version>3.5.6</mybatis_version>
 		<mybatis-spring_version>1.2.1</mybatis-spring_version>
 		<velocity_version>1.7</velocity_version>
 		<velocity-tools_version>2.0</velocity-tools_version>
