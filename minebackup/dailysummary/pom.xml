@@ -12,7 +12,7 @@
 
 	<properties>
 		<!-- 主要依赖库的版本定义 -->
-		<spring_version>4.1.0.RELEASE</spring_version>
+		<spring_version>5.3.19</spring_version>
 		<aspectj_version>1.8.0</aspectj_version>
 		<mybatis_version>3.2.7</mybatis_version>
 		<mybatis-spring_version>1.2.1</mybatis-spring_version>
