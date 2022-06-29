@@ -35,7 +35,7 @@
 		<assertj_version>1.6.1</assertj_version>
 		<mockito_version>1.9.5</mockito_version>
 		<jetty_version>6.1.26</jetty_version>
-		<zookeeper_version>3.3.3</zookeeper_version>
+		<zookeeper_version>3.4.14</zookeeper_version>
 		<zkclient_version>0.1</zkclient_version>
 
 		<!-- Plugin的属性 -->
